@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +43,14 @@ public class UserController {
 
     }
 
+
+
+
+    @RequestMapping (value="/login", method= RequestMethod.GET)
+    public String loadForm (Model model) {
+        model.addAttribute ("user", new User());
+        return "/login";
+    }
 
     @GetMapping("/newCustomer")
         public String newCustomer(Model model) {
