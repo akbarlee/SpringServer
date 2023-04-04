@@ -1,6 +1,5 @@
 package com.akbarlee.SpringServer.User;
-
-
+import com.akbarlee.SpringServer.User.Role;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;

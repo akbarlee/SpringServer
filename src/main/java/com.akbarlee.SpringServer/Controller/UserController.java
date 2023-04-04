@@ -1,6 +1,10 @@
 package com.akbarlee.SpringServer.Controller;
 
 
+import com.akbarlee.SpringServer.Auth.AuthenticationRequest;
+import com.akbarlee.SpringServer.Auth.AuthenticationResponse;
+import com.akbarlee.SpringServer.Auth.AuthenticationService;
+import com.akbarlee.SpringServer.Auth.RegisterRequest;
 import com.akbarlee.SpringServer.User.User;
 import com.akbarlee.SpringServer.User.UserDao;
 import org.slf4j.Logger;
@@ -21,13 +25,17 @@ import java.util.List;
 
 
 public class UserController {
+    private final AuthenticationService service;
     private static final Logger CTRL_LOGGER = LoggerFactory.getLogger(UserController.class);
     @Autowired
     public UserDao userDao;
 
+    public UserController(AuthenticationService service) {
+        this.service = service;
+    }
 
 
-    @RequestMapping("/")
+    @RequestMapping("/v1/")
 
     public String getCustomer(Model model) {
 
