@@ -37,15 +37,13 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
-        logger.info("User firstname "+ user.getFirstname()
-                +" lastname "+ user.getLastname()
-                +" email "+ user.getEmail()
-                +" password "+ user.getPassword());
+                repository.save(user);
 
-        repository.save(user);
-
+        // Usere uygun tokeni generate edib jwtToken icinde saxla
         var jwtToken = jwtService.generateToken(user);
+
         logger.info("Auth Service jwtToken "+ jwtToken);
+        // jwtTokeni Response classin icindeki tokene gonder
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
