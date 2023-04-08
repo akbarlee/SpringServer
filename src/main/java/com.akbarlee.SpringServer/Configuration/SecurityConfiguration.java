@@ -39,8 +39,10 @@ public class SecurityConfiguration  {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
+
                 .requestMatchers("/v1/**","/login").permitAll()
                 .requestMatchers("/v1/**").hasRole("USER")
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

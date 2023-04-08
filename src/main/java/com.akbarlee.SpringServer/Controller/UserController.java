@@ -5,7 +5,6 @@ import com.akbarlee.SpringServer.Auth.AuthenticationRequest;
 import com.akbarlee.SpringServer.Auth.AuthenticationResponse;
 import com.akbarlee.SpringServer.Auth.AuthenticationService;
 import com.akbarlee.SpringServer.Auth.RegisterRequest;
-import com.akbarlee.SpringServer.EmailSender.EmailSenderService;
 import com.akbarlee.SpringServer.User.User;
 import com.akbarlee.SpringServer.User.UserDao;
 import org.slf4j.Logger;
@@ -13,11 +12,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+
 import java.util.List;
+
+
 @Controller
+
 
 public class UserController {
     private final AuthenticationService service;
@@ -25,25 +30,31 @@ public class UserController {
     @Autowired
     public UserDao userDao;
 
-    @Autowired
-    private EmailSenderService emailSenderService;
-
-
     public UserController(AuthenticationService service) {
         this.service = service;
     }
 
+
     @RequestMapping("/v1/")
+
     public String getCustomer(Model model) {
+
         // Get the list of employees from the database
         List<User> users = userDao.getAllEmployees();
         CTRL_LOGGER.info("List employees "+users);
         // Add the list of employees to the model
         model.addAttribute("employees", users);
+        CTRL_LOGGER.info("Add the list of employees to the model "+model.addAttribute("listUsers", users));
+        // Return the index.html view
+        CTRL_LOGGER.info("Model "+model);
           return "index.html";
-              }
 
-     @RequestMapping (value="/login", method= RequestMethod.GET)
+    }
+
+
+
+
+    @RequestMapping (value="/login", method= RequestMethod.GET)
     public String loadForm (Model model) {
         model.addAttribute ("user", new User());
         return "/login";

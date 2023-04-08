@@ -1,4 +1,5 @@
 package com.akbarlee.SpringServer.User;
+import com.akbarlee.SpringServer.User.Role;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +39,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     private String register_date;
-    private boolean isEnabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -88,11 +88,11 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
     public boolean isEnabled() {
-        return isEnabled;
+
+        return true;
     }
 
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
-    }
+
 }
