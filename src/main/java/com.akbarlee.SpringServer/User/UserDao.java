@@ -39,8 +39,8 @@ public class UserDao {
     public List<User> getAllEmployees() {
         try {
             LOGGER.info("Work " + repository.findAll());
-            return repository.findAll();
-        } catch (Exception e) {
+        return repository.findAll();
+            } catch (Exception e) {
 
             LOGGER.info("Fail");
             // Handle the exception

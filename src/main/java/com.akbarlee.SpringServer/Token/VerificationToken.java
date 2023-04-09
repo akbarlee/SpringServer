@@ -15,6 +15,7 @@ public class VerificationToken {
     @Column(name="token_id")
     private long token_id;
 
+    @Column(name="confirmation_token")
     private String confirmationToken;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -24,8 +25,8 @@ public class VerificationToken {
     private Timestamp expiryDate;
 
 
-    @OneToOne (cascade = {  CascadeType.DETACH , CascadeType.MERGE , CascadeType.PERSIST , CascadeType.REFRESH})
-    @JoinColumn( nullable = false , name = "user_id")
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
     public VerificationToken(User user) {
@@ -42,6 +43,13 @@ public class VerificationToken {
 
     }
 
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
 
     public long getToken_id() {
         return token_id;
