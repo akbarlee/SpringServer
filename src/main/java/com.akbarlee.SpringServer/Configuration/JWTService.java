@@ -19,17 +19,16 @@ import org.slf4j.LoggerFactory;
 public class JWTService {
     Logger logger = LoggerFactory.getLogger(JWTService.class);
     private  static  final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
+    // Tokenden istifadeci subjectini (username'sini) gotururuk
     public String extractUsername(String token) {
-        logger.debug("extract claim"+  extractClaim(token , Claims::getSubject) );
-        logger.info("Token "+  token );
         return  extractClaim(token , Claims :: getSubject);
-
-    }
-
+           }
+   // claimsResolver tokenin icinden istifadeci melumatlarini alir ( Subject , Expiration , Issuer , Audience ve s. )
     public <T> T extractClaim (String token , Function<Claims , T> claimsResolver) {
         final  Claims claims = extractAllClaims(token);
         return  claimsResolver.apply(claims);
     }
+
 
 
     public String generateToken(UserDetails userDetails) {
