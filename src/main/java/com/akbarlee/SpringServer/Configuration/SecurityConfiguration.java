@@ -32,15 +32,15 @@ public class SecurityConfiguration  {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
+   public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity
 
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/v1/**","/login").permitAll()
-                .requestMatchers("/v1/**").hasRole("USER")
+                .requestMatchers("/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
@@ -49,9 +49,7 @@ public class SecurityConfiguration  {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 
-
-                .formLogin()
-                .defaultSuccessUrl("/index.html", true);
+                .httpBasic();
               //  .and().httpBasic();
 
 

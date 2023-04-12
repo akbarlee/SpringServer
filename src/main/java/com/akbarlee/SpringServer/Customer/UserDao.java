@@ -1,4 +1,4 @@
-package com.akbarlee.SpringServer.User;
+package com.akbarlee.SpringServer.Customer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

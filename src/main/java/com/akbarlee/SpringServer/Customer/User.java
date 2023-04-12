@@ -1,4 +1,4 @@
-package com.akbarlee.SpringServer.User;
+package com.akbarlee.SpringServer.Customer;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue  //(strategy = GenerationType.IDENTITY)
+    @GeneratedValue  (strategy = GenerationType.AUTO)
     private  int id ;
     private String firstname;
     private String lastname;

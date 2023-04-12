@@ -1,6 +1,6 @@
 package com.akbarlee.SpringServer.Configuration;
 
-import com.akbarlee.SpringServer.User.UserRepository;
+import com.akbarlee.SpringServer.Customer.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

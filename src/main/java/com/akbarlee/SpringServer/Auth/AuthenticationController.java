@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping
 @RequiredArgsConstructor
 public class AuthenticationController {
 
 
     private final AuthenticationService service;
 
-    @PostMapping("/register")
+    @PostMapping("/registe")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
