@@ -1,13 +1,9 @@
 package com.akbarlee.SpringServer.Controller;
 
 
-import com.akbarlee.SpringServer.Auth.AuthenticationRequest;
-import com.akbarlee.SpringServer.Auth.AuthenticationResponse;
 import com.akbarlee.SpringServer.Auth.AuthenticationService;
-import com.akbarlee.SpringServer.Auth.RegisterRequest;
-import com.akbarlee.SpringServer.EmailSender.EmailSenderService;
-import com.akbarlee.SpringServer.User.User;
-import com.akbarlee.SpringServer.User.UserDao;
+import com.akbarlee.SpringServer.Customer.User;
+import com.akbarlee.SpringServer.Customer.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +21,14 @@ public class UserController {
     @Autowired
     public UserDao userDao;
 
-    @Autowired
-    private EmailSenderService emailSenderService;
 
 
     public UserController(AuthenticationService service) {
         this.service = service;
     }
 
-    @RequestMapping("/v1/")
+
+    @RequestMapping("/")
     public String getCustomer(Model model) {
         // Get the list of employees from the database
         List<User> users = userDao.getAllEmployees();
@@ -43,11 +38,7 @@ public class UserController {
           return "index.html";
               }
 
-     @RequestMapping (value="/login", method= RequestMethod.GET)
-    public String loadForm (Model model) {
-        model.addAttribute ("user", new User());
-        return "/login";
-    }
+
 
     @GetMapping("/newCustomer")
         public String newCustomer(Model model) {

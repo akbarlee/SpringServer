@@ -1,4 +1,4 @@
-package com.akbarlee.SpringServer.User;
+package com.akbarlee.SpringServer.Customer;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

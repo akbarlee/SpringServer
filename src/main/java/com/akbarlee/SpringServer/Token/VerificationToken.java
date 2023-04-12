@@ -1,7 +1,8 @@
 package com.akbarlee.SpringServer.Token;
 
-import com.akbarlee.SpringServer.User.User;
+import com.akbarlee.SpringServer.Customer.User;
 import jakarta.persistence.*;
+
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -16,7 +17,7 @@ public class VerificationToken {
     private long token_id;
 
     @Column(name="confirmation_token")
-    private String confirmationToken;
+    private String verificationToken;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
@@ -31,11 +32,12 @@ public class VerificationToken {
 
     public VerificationToken(User user) {
         this.user = user;
-        confirmationToken = UUID.randomUUID().toString();
+        createdDate = new Date();
+        verificationToken = UUID.randomUUID().toString();
          }
 
    public VerificationToken(String token, User user) {
-        this.confirmationToken = token;
+        this.verificationToken = token;
         this.user = user;
    }
 
@@ -44,11 +46,11 @@ public class VerificationToken {
     }
 
     public String getConfirmationToken() {
-        return confirmationToken;
+        return verificationToken;
     }
 
     public void setConfirmationToken(String confirmationToken) {
-        this.confirmationToken = confirmationToken;
+        this.verificationToken = confirmationToken;
     }
 
     public long getToken_id() {
@@ -68,11 +70,11 @@ public class VerificationToken {
     }
 
     public String getToken() {
-        return confirmationToken;
+        return verificationToken;
     }
 
     public void setToken(String token) {
-        this.confirmationToken = token;
+        this.verificationToken = token;
     }
 
     public Timestamp getExpiryDate() {

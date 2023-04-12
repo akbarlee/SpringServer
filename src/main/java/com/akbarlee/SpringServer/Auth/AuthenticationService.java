@@ -1,15 +1,16 @@
 package com.akbarlee.SpringServer.Auth;
 
 import com.akbarlee.SpringServer.Configuration.JWTService;
-import com.akbarlee.SpringServer.User.Role;
-import com.akbarlee.SpringServer.User.UserRepository;
-import com.akbarlee.SpringServer.User.User;
+import com.akbarlee.SpringServer.Customer.Role;
+import com.akbarlee.SpringServer.Customer.UserRepository;
+import com.akbarlee.SpringServer.Customer.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 import java.util.logging.Logger;
 
