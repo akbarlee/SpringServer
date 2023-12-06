@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://thymeleaf.org" >
 <html lang="en">
 <head>
     <base href="http://localhost:8080">
@@ -10,54 +10,174 @@
 
 
     <!-- CSS only -->
-    <link rel="stylesheet" type="text/css" href="/NeumorphicTable.css">
+    <link rel="stylesheet" type="text/css" href="/Cardİtem.css">
+    <link rel="stylesheet" type="text/css" href="/CardGrid.css">
+    <link rel="stylesheet" type="text/css" href="/Carousel.css">
     <link rel="stylesheet" type="text/css" href="/NeumorphicButton.css">
+    <link rel="stylesheet" type="text/css" href="/Navbar.css">
+
 </head>
 <body>
 
-<div class="container">
-    <div class="mb-3">
-        <input type="file" class="form-control" aria-label="file example" required>
-        <div class="invalid-feedback">Example invalid form file feedback</div>
+<header id="header">
+
+    <nav id="nav-bar">
+        <ul>
+            <li><a class="nav-link" href="#speed">speed</a></li>
+            <li><a class="nav-link" href="#display">display</a></li>
+            <li><a class="nav-link" href="#camera">camera</a></li>
+            <li><a class="nav-link" href="#design">design</a></li>
+            <li><a class="nav-link" href="#oxygenos">OxygenOS</a></li>
+            <li><a class="nav-link" href="#resistance">resistance</a></li>
+            <li><a class="nav-link" href="#headphones">headphones</a></li>
+        </ul>
+    </nav>
+</header>
+<main >
+    <div class='center-column'>
+        <li class='item-carousel' style="background-image: url('https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg')">
+            <div class='content-carousel'>
+                <h2 class='title-carousel'>"Lossless Youths"</h2>
+                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                    praesentium nisi. Id laboriosam ipsam enim.  </p>
+                <button-carousel>Read More</button-carousel>
+            </div>
+        </li>
+        <li class='item-carousel' style="background-image: url('https://i.redd.it/tc0aqpv92pn21.jpg')">
+            <div class='content-carousel'>
+                <h2 class='title-carousel'>"Estrange Bond"</h2>
+                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                    praesentium nisi. Id laboriosam ipsam enim.  </p>
+                <button-carousel>Read More</button-carousel>
+            </div>
+        </li>
+        <li class='item-carousel' style="background-image: url('https://wharferj.files.wordpress.com/2015/11/bio_north.jpg')">
+            <div class='content-carousel'>
+                <h2 class='title-carousel'>"The Gate Keeper"</h2>
+                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                    praesentium nisi. Id laboriosam ipsam enim.  </p>
+                <button-carousel>Read More</button-carousel>
+            </div>
+        </li>
+        <li class='item-carousel' style="background-image: url('https://images7.alphacoders.com/878/878663.jpg')">
+            <div class='content-carousel'>
+                <h2 class='title-carousel'>"Last Trace Of Us"</h2>
+                <p class='description-carousel'>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
+                </p>
+                <button-carousel>Read More</button-carousel>
+            </div>
+        </li>
+        <li class='item-carousel' style="background-image: url('https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg')">
+            <div class='content-carousel'>
+                <h2 class='title-carousel'>"Urban Decay"</h2>
+                <p class='description-carousel'>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
+                </p>
+                <button-carousel>Read More</button-carousel>
+            </div>
+        </li>
+        <li class='item-carousel' style="background-image: url('https://da.se/app/uploads/2015/09/simon-december1994.jpg')">
+            <div class='content-carousel'>
+                <h2 class='title-carousel'>"The Migration"</h2>
+                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
+                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                    praesentium nisi. Id laboriosam ipsam enim.  </p>
+                <button-carousel>Read More</button-carousel>
+            </div>
+        </li>
+
     </div>
-    <div id="person_info">
-        <h1> Mebel list </h1>
-        <a th:href="@{/newCustomer}" class="btn btn-primary btn-sm mb-3"> Müştəri əlavə et </a>
-        <a th:href="@{/newProduct}" class="btn btn-primary btn-sm mb-3"> Mebel əlavə et </a>
-        <table class = "neumorphic">
-            <thead class="table-dark">
+    <nav class='nav'>
+        <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+        <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+    </nav>
 
-            <tr>
-                <th style="border: 0px solid black"> İstifadəçi adı</th>
-                <th style="border: 0px solid black"> İstifadəçi soyadı </th>
-                <th style="border: 0px solid black"> Elektron poçt </th>
-                <th style="border: 0px solid black"> Şifrə</th>
-                <th style="border: 0px solid black"> Mövqe</th>
+</main>
+<div class="wrapper">
 
-                <th style="width: 1000px ">  Dəyişiklik et </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user:${employees}">
-                <td style="border: 0px solid black" th:text="${user.firstname}"> </td>
-                <td style="border: 0px solid black" th:text="${user.lastname}"> </td>
-                <td style="border: 0px solid black" th:text="${user.email}"> </td>
-                <td style="border: 0px solid black" th:text="${user.password}"> </td>
-                <td style="border: 0px solid black" th:text="${user.role}"> </td>
+    <div class="header_grid">
+        <h1 class="header__title">Expanding Card Grid</h1>
+        <h2 class="header__subtitle">with Flexbox</h2>
+    </div>
 
+    <div class="cards">
 
-                <td> <a th:href="@{/showFormForUpdate/{id}(id=${user.id})}" class="update shape">Düzəliş et</a>
+        <figure class="snip1268">
+            <div class="image">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample4.jpg" alt="sq-sample4"/>
 
-                    <a th:href="@{/deleteCustomer/{id}(id=${user.id})}" class="delete shape ">Sil</a></td>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+            <figcaption>
+                <h2>Denim Shirt</h2>
+                <p>My family is dysfunctional and my parents won't empower me. Consequently I'm not self actualized.</p>
+                <div class="price">$65.00 </div>
+            </figcaption>
+        </figure>
 
 
-            </tr>
-            </tbody>
-        </table>
+        <div class=" card ">
+            <div class="card__inner ">
+                <span>Card</span>
+                <i class="fa fa-folder-o"></i>
+            </div>
+
+        </div>
+
+        <div class=" card ">
+            <div class="card__inner ">
+                <span>Card</span>
+                <i class="fa fa-folder-o"></i>
+            </div>
+
+        </div>
+
+        <div class=" card ">
+            <div class="card__inner ">
+                <span>Card</span>
+                <i class="fa fa-folder-o"></i>
+            </div>
+
+        </div>
+
+        <div class=" card ">
+            <div class="card__inner ">
+                <span>Card</span>
+                <i class="fa fa-folder-o"></i>
+            </div>
+
+        </div>
+
+        <div class=" card ">
+            <div class="card__inner ">
+                <span>Card</span>
+                <i class="fa fa-folder-o"></i>
+            </div>
+
+        </div>
+        <div class=" card ">
+            <div class="card__inner ">
+                <span>Card</span>
+                <i class="fa fa-folder-o"></i>
+            </div>
+
+        </div>
 
     </div>
+
 </div>
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="js/CarouselControl.js"></script>
 </body>
+
+
 
 
 </html>
