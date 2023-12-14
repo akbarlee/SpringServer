@@ -28,14 +28,14 @@ public class UserController {
     }
 
 
-    @RequestMapping("/")
+    @RequestMapping("/dashboard")
     public String getCustomer(Model model) {
         // Get the list of employees from the database
         List<User> users = userDao.getAllEmployees();
         CTRL_LOGGER.info("List employees "+users);
         // Add the list of employees to the model
         model.addAttribute("employees", users);
-          return "index.html";
+          return "dashboard.html";
               }
 
 

@@ -32,6 +32,8 @@ public class AccountController {
  @Autowired
  private EmailSenderService emailSenderService;
     Logger logger =  LoggerFactory.getLogger(getClass());
+
+
     @GetMapping(value="/loginP")
     public ModelAndView displayLogin(ModelAndView modelAndView, User user)
     {
@@ -39,37 +41,6 @@ public class AccountController {
         modelAndView.addObject("loginP", user);
         modelAndView.setViewName("loginP");
 
-        return modelAndView;
-    }
-    @PostMapping(value = ("/loginP"))
-    public ModelAndView loginUser(ModelAndView modelAndView,
-                                  @RequestParam String email,
-                                  @RequestParam String password) {
-        // Logger instance at class level
-        final Logger logger = LoggerFactory.getLogger(getClass());
-
-// Find the user by email and password
-        Optional<User> foundUser = userRepositoryJDBC.findByEmailAndPassword(email, password);
-// Log a debug message with parameters
-        logger.debug("Trying to login user after button. User id {}",
-                foundUser.map(User::getId).orElse(null));
-// Set the encoder to LogstashEncoder
-        logger.info(" Search for mail and pass{}", foundUser);
-// Check if the user exists and the password matches
-        if (foundUser.isPresent() && passwordEncoder.matches(password, foundUser.get().getPassword())) {
-            // Set the view name to register
-            modelAndView.setViewName("register");
-            // Log a success message
-            logger.info("User {} logged in successfully", foundUser.get().getEmail());
-        } else {
-            // Set the view name to error
-            modelAndView.setViewName("error");
-            // Add an error message
-            modelAndView.addObject("message", "Elektron ünvan və ya şifrə xətalıdır!");
-            // Log an error message
-            logger.error("Invalid email or password for user {}", foundUser.map(User::getId).orElse(null));
-        }
-  // Return the model and view object
         return modelAndView;
     }
 
