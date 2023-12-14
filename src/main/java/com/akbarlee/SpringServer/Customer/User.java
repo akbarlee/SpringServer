@@ -62,6 +62,7 @@ public class User implements UserDetails {
     // @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
 
+
     public int getId() {
         return id;
     }
@@ -81,6 +82,7 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     @Override
     public String getPassword() {
@@ -108,7 +110,9 @@ public class User implements UserDetails {
         return true;
     }
 
+
     @Override
+
     public boolean isEnabled() {
         return isEnabled;
     }
