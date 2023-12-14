@@ -5,7 +5,7 @@ body{
 
 body {
   margin: 0;
-  background: #e0e5ec;
+  background: #e3eaef;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 100;
 }
@@ -20,14 +20,16 @@ body {
 table.neumorphic{
   width: 600px;
   border-spacing: 0;
-  color: #212121;
+  background-color: #08153a;
+  color: #FFFFFF;
   text-align: center;
   overflow: hidden;
-  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6),
-  -9px -9px 16px rgba(255, 255, 255, 0.6);
+  box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.1),
+  10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 table.neumorphic thead{
-  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6);
+  box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.1),
+  10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 table.neumorphic th{
   padding: 20px;
@@ -42,8 +44,8 @@ table.neumorphic>tbody>tr>td {
 
 table.neumorphic>tbody>tr:hover {
   padding: 20px;
-  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6),
-  -9px -9px 16px rgba(255, 255, 255, 0.6);
+  box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.1),
+  10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
 table.neumorphic tr td:first-child::before {
@@ -60,8 +62,8 @@ table.neumorphic tr td:first-child::before {
 table.neumorphic td:hover::after {
   content: "";
   position: absolute;
-  box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6),
-  -9px -9px 16px rgba(255, 255, 255, 0.6);
+  box-shadow: 9px 9px 16px rgb(253, 0, 0),
+  -9px -9px 16px rgba(232, 0, 0, 0.4);
   left: 0;
   top: -5000px;
   height: 10000px;

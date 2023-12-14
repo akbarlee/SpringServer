@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org">
-<html lang="en">
-
+<html lang=“en”
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th=“http://www.thymeleaf.org”>
 <head>
+
+
     <meta charset="UTF-8">
 
     <link type="text/css" href="/all.min.css" rel="stylesheet">
@@ -24,15 +25,18 @@
                             <h2 class="h4">Hesaba giriş et</h2>
                         </div>
                         <div class="card-body">
-                            <form action="#" class="mt-4">
+
+                            <form action="#" th:action="@{/loginP}" th:object="${loginP}" class="mt-4" method="post">
                                 <!-- Form -->
                                 <div class="form-group">
                                     <label for="exampleInputIcon3">Elektron ünvan</label>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><img src="/assets/user.png"></span></span>
+                                            <span class="input-group-text"><img src="user.png"></span>
                                         </div>
-                                        <input class="form-control" id="exampleInputIcon3" placeholder="numune@muessise.com" type="text" aria-label="email adress">
+                                        <input class="form-control"
+                                               id="exampleInputIcon3"  th:field="${loginP.email}"
+                                               placeholder="numune@muessise.com" type="text" aria-label="email adress">
                                     </div>
                                 </div>
                                 <!-- End of Form -->
@@ -42,10 +46,12 @@
                                         <label for="exampleInputPassword6">Şifrə</label>
                                         <div class="input-group mb-4">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><img src="/assets/lock.png"></span></span>
+                                                <span class="input-group-text"><img src="lock.png"></span></span>
 
                                             </div>
-                                            <input class="form-control" id="exampleInputPassword6" placeholder="Şifrə" type="password" aria-label="Password" required>
+                                            <input class="form-control" id="exampleInputPassword6" placeholder="Şifrə"
+                                                   th:field="${loginP.password}"
+                                                   type="password" aria-label="Password" required>
                                         </div>
                                     </div>
                                     <!-- End of Form -->
@@ -81,6 +87,9 @@
                                         <a href="#" class="font-weight-bold">Hesab yarat</a>
                                     </span>
                             </div>
+
+
+                   </form>
                         </div>
                     </div>
                 </div>

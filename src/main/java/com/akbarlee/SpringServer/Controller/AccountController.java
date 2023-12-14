@@ -50,6 +50,10 @@ public class AccountController {
  private EmailSenderService emailSenderService;
 
     Logger logger =  LoggerFactory.getLogger(getClass());
+
+
+
+
     @GetMapping(value="/loginP")
     public ModelAndView displayLogin(ModelAndView modelAndView, User user)
     {
@@ -59,6 +63,7 @@ public class AccountController {
 
         return modelAndView;
     }
+
     @PostMapping(value = ("/loginP"))
     public ModelAndView loginUser(ModelAndView modelAndView,
                                   @RequestParam String email,
@@ -90,6 +95,7 @@ public class AccountController {
   // Return the model and view object
         return modelAndView;
     }
+
 
 
 
