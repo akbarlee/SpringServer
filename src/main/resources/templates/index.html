@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org" >
+      xmlns:th="http://thymeleaf.org" xmlns:background-image="http://www.w3.org/1999/xhtml">
 <html lang="en">
 <head>
     <base href="http://localhost:8080">
@@ -34,17 +34,21 @@
     </nav>
 </header>
 <main >
-    <div class='center-column'>
-        <li class='item-carousel' style="background-image: url('https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg')">
+    <ul class="center-column" >
+
+        <li class="item-carousel" th:each="carouselData : ${carousel}">
+            <img th:src="@{${'/image/display/'+ carouselData.id}}"  alt="" >
             <div class='content-carousel'>
-                <h2 class='title-carousel'>"Lossless Youths"</h2>
-                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
-                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                    praesentium nisi. Id laboriosam ipsam enim.  </p>
+                <h2 class='title-carousel' th:text="${carouselData.carousel_title}"></h2>
+                <p class='description-carousel' th:text="${carouselData.carousel_descr}" ></p>
                 <button-carousel>Read More</button-carousel>
             </div>
+
+
         </li>
-        <li class='item-carousel' style="background-image: url('https://i.redd.it/tc0aqpv92pn21.jpg')">
+
+
+        <li class="item-carousel" style="background-image:  url('https://i.redd.it/tc0aqpv92pn21.jpg')">
             <div class='content-carousel'>
                 <h2 class='title-carousel'>"Estrange Bond"</h2>
                 <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
@@ -53,6 +57,7 @@
                 <button-carousel>Read More</button-carousel>
             </div>
         </li>
+
         <li class='item-carousel' style="background-image: url('https://wharferj.files.wordpress.com/2015/11/bio_north.jpg')">
             <div class='content-carousel'>
                 <h2 class='title-carousel'>"The Gate Keeper"</h2>
@@ -89,6 +94,7 @@
                 <button-carousel>Read More</button-carousel>
             </div>
         </li>
+    </ul>
 
     </div>
     <nav class='nav'>
