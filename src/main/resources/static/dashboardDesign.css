@@ -120,18 +120,18 @@ button {
 .nav-list-link svg {
     margin-right: 12px;
 }
+
 .nav-list-link:after {
     content: '';
-    height: 100%;
     width: 2px;
-    background-color: var(--app-logo);
+    background-color: blue;
     right: 0;
     top: 0;
     position: absolute;
     border-radius: 2px;
     opacity: 0;
-    height: 0;
 }
+
 .open-right-area {
     display: none;
     justify-content: center;
