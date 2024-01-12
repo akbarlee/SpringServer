@@ -2,16 +2,20 @@
 <html lang=“en” xmlns=“http://www.w3.org/1999/xhtml” xmlns:th=“http://www.thymeleaf.org” >
 <head>
     <title>Dashboard</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="jquery/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css"    href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/dashboardDesign.css">
-    <link rel="stylesheet" type="text/css" href="/NeumorphicTable.css">
-    <link rel="stylesheet" type="text/css" href="/NeumorphicButton.css">
-    <link rel="stylesheet" type="text/css" href="/Submit.css">
+    <link rel="stylesheet" type="text/css" href="/Vendor.css">
+    <link rel="stylesheet" type="text/css" href="/itemEditor_style.css">
+    <link rel="stylesheet" type="text/css" href="/Plugin.css">
 
 
 </head>
 <body>
 
     <div class="app-container">
+        <!--====================  Sol layout ====================-->
         <div class="app-left">
 
             <div class="app-logo">
@@ -21,7 +25,9 @@
                     <line x1="6" y1="20" x2="6" y2="14"/>       </svg>
                 <span>Manager</span>
             </div>
+
             <ul class="nav-list">
+                <!--====================  Sol nav bar  ====================-->
                 <li class="nav-list-item ">
                     <a class="nav-list-link" href="dashboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns"><path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"/></svg>
@@ -53,13 +59,12 @@
                     </a>
                 </li>
             </ul>
+            <!--====================  Sol layout bitir  ====================-->
         </div>
         <div class="app-main">
 
-
-
-            <h2>Carousel info</h2>
-            <table id="carousel-info" class="table table-striped table-bordered text-center">
+            <table id="carousel-info" class="table table-bordered table-dark ">
+                <!--====================  Carousel table data  ====================-->
                 <thead>
                 <tr>
                     <th>SR. No.</th>
@@ -81,49 +86,104 @@
                     <td><a th:href="@{/image/imageDetails(id=${imageGallery.id})}" class="btn btn-info text-right" target="_blank">View</a></td>
                 </tr>
                 </tbody>
+                <!--====================  Carousel table data bitir  ====================-->
             </table>
 
-        </div>
-
-        <h1> Carousel edit</h1>
-        <br><br>
-        <div class="contact py-sm-5 py-4">
-            <div class="container py-xl-4 py-lg-2">
-                <!-- form -->
-                <form th:action="@{/saveImageDetails}" method="post" enctype="multipart/form-data">
-                    <div class="contact-grids1 w3agile-6">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
-                                <label class="col-form-label">Name</label>
-                                <input type="text" id="carousel_title" name="carousel_title" th:value="${title}" required/> <p id="error_name"></p>
-                            </div>
-                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
-                                <label class="col-form-label">Description</label>
-                                <textarea id="description" name="description" th:text="${description}" required></textarea>
-                            </div>
-                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
-                                <label class="col-form-label">Image</label>
-                                <input type="file" id="image" name="image" accept="image/*" required/>
-                            </div>
-                        </div>
-                        <div class="right-w3l col-md-6">
-                            <input type="submit" value="Save"/>
-                            <br><br>
-                        </div>
-                        <a href="/image/show" style="float:left;" class="btn btn-success text-right">Show All</a>
+            <div class="faq-wrapper" id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                               Carousel editor MVC <span> <i class="fa fa-chevron-down"></i>
+                                    <i class="fa fa-chevron-up"></i> </span>
+                            </button>
+                        </h5>
                     </div>
-                    <br>
-                    <div id="success" class="text-center" style="color:green;"></div>
-                    <div id="error" class="text-center" style="color:red;"></div>
 
-                </form>
-                <script src="js/dashboardControl.js"></script>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <div class="container py-xl-4 py-lg-2">
+                                <!--====================  Submit form  ====================-->
+                                <form th:action="@{/saveImageDetails}" method="post" enctype="multipart/form-data">
+                                    <div class="contact-grids1 w3agile-6">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
+                                                <label class="col-form-label">Name</label>
+                                                <input type="text" id="carousel_title" name="carousel_title" th:value="${title}" required/> <p id="error_name"></p>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
+                                                <label class="col-form-label">Description</label>
+                                                <textarea id="description" name="description" th:text="${description}" required></textarea>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
+                                                <label class="col-form-label">Image</label>
+                                                <input type="file" id="image" name="image" accept="image/*" required/>
+                                            </div>
+                                        </div>
+                                        <div class="right-w3l col-md-6">
+                                            <input type="submit" value="Save"/>
+                                            <br><br>
+                                        </div>
+                                        <a href="/image/show" style="float:left;" class="btn btn-success text-right">Show All</a>
+                                    </div>
+                                    <br>
+                                    <div id="success" class="text-center" style="color:green;"></div>
+                                    <div id="error" class="text-center" style="color:red;"></div>
 
+                                </form>
+                                <script src="js/dashboardControl.js"></script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                What are the advantages of Helendo?<span> <i class="fa fa-chevron-down"></i>
+                                    <i class="fa fa-chevron-up"></i> </span>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p>Helendo takes into consideration every little detail to make sure the system run smoothly and responsively. Helendo employs a new technique called Minified Technology for securing customers' database &amp; building up highly confidential firewalls. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How working process is simplified? <span> <i class="fa fa-chevron-down"></i>
+                                    <i class="fa fa-chevron-up"></i> </span>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p>We reduce redundant complex calculations and lengthy erroneous code texts with simpler ones to ensure Helendo would run seamlessly and the design is reserved in its best form when viewed from a wide range of mobile devices &amp; browsers. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Product Engineering &amp; Services<span> <i class="fa fa-chevron-down"></i>
+                                    <i class="fa fa-chevron-up"></i> </span>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            <p>Our service offerings to enhance customer experience throughout the product lifecycle includes – test and repair, service management, and end-to-end warranty management. </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <p class="text-center">
-            <img src="/images/loader.gif" alt="loader" style="width: 150px;height: 120px;" id="loader">
-        </p>
 
 
     </div>
@@ -131,16 +191,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"> </script>
+    <script src="js/bootstrap.min.js"> </script>
+    <script src="js/vendor_main.js"> </script>
     <script type = "text/javascript">
         $(document).ready(function() {
             $('#carousel-info').DataTable();
         } );
     </script>
-
-
-
-    <script src="js/ImageCarousel.js"></script>
-
 </body>
 
 </html>
