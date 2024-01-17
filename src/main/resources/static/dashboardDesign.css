@@ -3,10 +3,10 @@
     box-sizing: border-box;
 }
 :root {
-    --app-bg-dark: #01081f;
+    --app-bg-dark: #02010a;
     --app-bg-before: linear-gradient(180deg, rgba(1, 8, 31, 0) 0%, #01081f 100%);
     --app-bg-before-2: linear-gradient(0deg, rgba(1, 8, 31, 0) 0%, #01081f 100%);
-    --app-bg-light: #151c32;
+    --app-bg-light: #c3cdfe;
     --app-logo: #3d7eff;
     --nav-link: #5e6a81;
     --nav-link-active: #fff;
@@ -60,7 +60,7 @@ body {
     overflow-x: hidden;
     background-color: var(--app-bg-light);
     padding: 24px;
-    background: radial-gradient(circle, #050a30 1%, #040f32 100%);
+    background: radial-gradient(circle, #d9def8 1%, #d2d6f1 100%);
 }
 
 .app-logo {
