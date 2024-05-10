@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org" >
+      xmlns:th="http://thymeleaf.org" xmlns:background-image="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
 <html lang="en">
 <head>
     <base href="http://localhost:8080">
@@ -8,97 +12,142 @@
     <meta charset="UTF-8">
     <title> Mebel idare</title>
 
-
+    <link rel="icon" href="/favicon.ico">
     <!-- CSS only -->
-    <link rel="stylesheet" type="text/css" href="/Cardİtem.css">
+    <link rel="stylesheet" type="text/css" href="/urdanStyle.css">
+    <link rel="stylesheet" type="text/css" href="/Vendor.css">
+    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/CardGrid.css">
     <link rel="stylesheet" type="text/css" href="/Carousel.css">
-    <link rel="stylesheet" type="text/css" href="/NeumorphicButton.css">
     <link rel="stylesheet" type="text/css" href="/Navbar.css">
+    <link rel="stylesheet" type="text/css" href="/pe-icon-7-stroke.css">
+
 
 </head>
+
 <body>
 
-<header id="header">
-
-    <nav id="nav-bar">
+<header class="main-menu text-center">
+    <nav>
         <ul>
-            <li><a class="nav-link" href="#speed">speed</a></li>
-            <li><a class="nav-link" href="#display">display</a></li>
-            <li><a class="nav-link" href="#camera">camera</a></li>
-            <li><a class="nav-link" href="#design">design</a></li>
-            <li><a class="nav-link" href="#oxygenos">OxygenOS</a></li>
-            <li><a class="nav-link" href="#resistance">resistance</a></li>
-            <li><a class="nav-link" href="#headphones">headphones</a></li>
+            <li><a href="index.html">HOME</a>
+                <ul class="sub-menu-style">
+                    <li><a href="index.html">Home version 1 </a></li>
+                    <li><a href="index-2.html">Home version 2</a></li>
+                </ul>
+            </li>
+            <li><a href="shop.html">SHOP</a>
+                <ul class="sub-menu-style">
+                    <li><a href="index.html">Shop version 1 </a></li>
+                    <li><a href="index-2.html">Shop version 2</a></li>
+                </ul>
+            </li>
+            <li><a href="#display">DISPLAY </a></li>
+            <li><a href="#display">CAMERA </a></li>
+            <li>
+                <div class="header-action-wrap">
+                    <ul class="header-action-style">
+                        <li>
+                            <a href="/loginP" sec:authorize="isAnonymous()">
+                                <p class="icon-user" sec:authorize="isAnonymous()"> Daxil ol </p>
+                            </a>
+                            <a href="/dashboard" sec:authorize="isAuthenticated()">
+
+                                <p class="icon-user" sec:authorize="isAuthenticated()"> Hesabım</p>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="header-action-style">
+                                <a title="Səbətim" href="login-register.html">
+                                    <p class="pe-7s-cart"></p></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="header-action-style">
+                                <a title="Wishlist" href="wishlist.html">
+                                    <p class="pe-7s-like"></p></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
         </ul>
     </nav>
 </header>
-<main >
-    <div class='center-column'>
-        <li class='item-carousel' style="background-image: url('https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg')">
+
+
+<main class="carousel-container">
+    <ul class="center-column">
+        <li class="item-carousel" th:each="carouselData : ${carousel}"
+            th:style="'background-image:url(' + @{${'/image/display/'+ carouselData.id}} + ')'" alt="">
             <div class='content-carousel'>
-                <h2 class='title-carousel'>"Lossless Youths"</h2>
-                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
-                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                    praesentium nisi. Id laboriosam ipsam enim.  </p>
+                <h2 class='title-carousel' th:text="${carouselData.carousel_title}"></h2>
+                <p class='description-carousel' th:text="${carouselData.carousel_descr}"></p>
                 <button-carousel>Read More</button-carousel>
             </div>
         </li>
-        <li class='item-carousel' style="background-image: url('https://i.redd.it/tc0aqpv92pn21.jpg')">
+
+        <li class="item-carousel" style="background-image:  url('https://i.redd.it/tc0aqpv92pn21.jpg')">
             <div class='content-carousel'>
                 <h2 class='title-carousel'>"Estrange Bond"</h2>
                 <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
                     adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                    praesentium nisi. Id laboriosam ipsam enim.  </p>
-                <button-carousel>Read More</button-carousel>
-            </div>
-        </li>
-        <li class='item-carousel' style="background-image: url('https://wharferj.files.wordpress.com/2015/11/bio_north.jpg')">
-            <div class='content-carousel'>
-                <h2 class='title-carousel'>"The Gate Keeper"</h2>
-                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
-                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                    praesentium nisi. Id laboriosam ipsam enim.  </p>
-                <button-carousel>Read More</button-carousel>
-            </div>
-        </li>
-        <li class='item-carousel' style="background-image: url('https://images7.alphacoders.com/878/878663.jpg')">
-            <div class='content-carousel'>
-                <h2 class='title-carousel'>"Last Trace Of Us"</h2>
-                <p class='description-carousel'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
-                </p>
-                <button-carousel>Read More</button-carousel>
-            </div>
-        </li>
-        <li class='item-carousel' style="background-image: url('https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg')">
-            <div class='content-carousel'>
-                <h2 class='title-carousel'>"Urban Decay"</h2>
-                <p class='description-carousel'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
-                </p>
-                <button-carousel>Read More</button-carousel>
-            </div>
-        </li>
-        <li class='item-carousel' style="background-image: url('https://da.se/app/uploads/2015/09/simon-december1994.jpg')">
-            <div class='content-carousel'>
-                <h2 class='title-carousel'>"The Migration"</h2>
-                <p class='description-carousel'> Lorem ipsum, dolor sit amet consectetur
-                    adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                    praesentium nisi. Id laboriosam ipsam enim.  </p>
+                    praesentium nisi. Id laboriosam ipsam enim. </p>
                 <button-carousel>Read More</button-carousel>
             </div>
         </li>
 
-    </div>
-    <nav class='nav'>
-        <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
-        <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+    </ul>
+
+    <nav class='nav-carousel'>
+        <ion-icon class='btns prev' name="arrow-back-outline"></ion-icon>
+        <ion-icon class='btns next' name="arrow-forward-outline"></ion-icon>
     </nav>
 
 </main>
 <div class="wrapper">
 
+ 
+    <div class="row">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12" th:each="productData : ${product}">
+            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-img img-zoom mb-25">
+                    <a href="product-details.html">
+                        <img th:src="@{${'/product/display/'+ productData.pr_id}}">
+                    </a>
+                    <div class="box">
+                        <div class="ribbon ribbon-top-right" th:if="${productData.Price<productData.oldPrice}"><span
+                                th:text="${#numbers.formatDecimal((productData.oldPrice - productData.Price) / productData.oldPrice * 100, 0, 'DEFAULT', 1, 'DEFAULT')} + ' %'"></span>
+                        </div>
+                    </div>
+                    <div class="product-action-wrap">
+                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
+
+                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal"
+                                th:data-bs-target="'#exampleModal' + ${productData.pr_id}">
+                            <i class="pe-7s-look"></i>
+                        </button>
+                    </div>
+                    <div class="product-action-2-wrap">
+                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-look"></i> Add to cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <h3 th:text="${productData.product_title}"><a href="product-details.html"></a></h3>
+                    <div class="product-price">
+                        <span class="old-price" th:if="${productData.Price<productData.oldPrice}"
+                              th:text="${productData.oldPrice} +' AZN'"></span>
+                        <span class="new-price" th:if="${productData.Price<productData.oldPrice}"
+                              th:text="${productData.Price} +' AZN' "></span>
+                        <span class="new-price" th:unless="${productData.Price<productData.oldPrice}"
+                              th:text="${productData.Price} +' AZN'"></span>
+                    </div>
+
+                </div>
+ 
     <div class="header_grid">
         <h1 class="header__title">Expanding Card Grid</h1>
         <h2 class="header__subtitle">with Flexbox</h2>
@@ -207,9 +256,76 @@
             <div class="card__inner ">
                 <span>Card</span>
                 <i class="fa fa-folder-o"></i>
+ 
+            </div>
+            <div class="modal fade quickview-modal-style" th:id="'exampleModal' + ${productData.pr_id}" tabindex="-1"
+                 role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close"><i
+                                    class=" ti-close "></i></a>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row gx-0">
+                                <div class="col-lg-5 col-md-5 col-12">
+                                    <div class="modal-img-wrap">
+                                        <img th:src="@{${'/product/display/'+ productData.pr_id}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-12">
+                                    <div class="product-details-content quickview-content">
+                                        <h2>New Modern Chair</h2>
+                                        <div class="product-details-price">
+                                            <span class="old-price">$25.89 </span>
+                                            <span class="new-price">$20.25</span>
+                                        </div>
+                                        <div class="product-details-review">
+
+                                            <div class="product-rating">
+                                                <i class=" ti-star"></i>
+                                                <i class=" ti-star"></i>
+                                                <i class=" ti-star"></i>
+                                                <i class=" ti-star"></i>
+                                                <i class=" ti-star"></i>
+                                            </div>
+                                            <span>( 1 Customer Review )</span>
+                                        </div>
+                                        <div class="product-color product-color-active product-details-color">
+                                            <span>Color :</span>
+                                            <ul>
+                                                <li><a title="Pink" class="pink" href="#">pink</a></li>
+                                                <li><a title="Yellow" class="active yellow" href="#">yellow</a></li>
+                                                <li><a title="Purple" class="purple" href="#">purple</a></li>
+                                            </ul>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare
+                                            tincidunt neque vel semper. Cras placerat enim sed nisl mattis eleifend.</p>
+                                        <div class="product-details-action-wrap">
+                                            <div class="product-quality">
+                                                <input class="cart-plus-minus-box input-text qty text" name="qtybutton"
+                                                       value="1">
+                                            </div>
+                                            <div class="single-product-cart btn-hover">
+                                                <a href="#">Add to cart</a>
+                                            </div>
+                                            <div class="single-product-wishlist">
+                                                <a title="Wishlist" href="#"><i class="pe-7s-like"></i></a>
+                                            </div>
+                                            <div class="single-product-compare">
+                                                <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
+ 
 
         <div class=" card ">
             <div class="card__inner ">
@@ -226,14 +342,6 @@
             </div>
 
         </div>
-
-        <div class=" card ">
-            <div class="card__inner ">
-                <span>Card</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-
-        </div>
         <div class=" card ">
             <div class="card__inner ">
                 <span>Card</span>
@@ -243,17 +351,15 @@
         </div>
 
 
+ 
     </div>
-
 </div>
-
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="js/CarouselControl.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
-
-
 
 
 </html>

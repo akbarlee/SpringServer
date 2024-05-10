@@ -12,7 +12,11 @@ a {
 
 header {
     width: 100%;
+ 
+   min-height: 10%;
+ 
     padding: 10px 40px;
+ 
     border-bottom: 1px solid #E5E5E5;
     background-color: white;
     position: fixed;
@@ -22,7 +26,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+ 
+    flex-wrap: nowrap;
+
+ 
     flex-wrap: wrap;
+ 
 }
 header h1 {
     font-size: 1.1rem;
@@ -37,17 +46,31 @@ header h1 {
     }
 }
 nav {
+ 
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+ 
     padding: 15px 15px 5px 15px;
 
     align-items: center;
     justify-content: space-between;
     width: 100%;
+ 
 }
 
 nav ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+ 
+
+}
+
+
+
+ 
     margin: 0 auto;
 }
 
@@ -77,3 +100,4 @@ nav li a:hover {
     color: #EB0028;
     border-bottom: 2px solid #EB0028;
 }
+ 

@@ -1,7 +1,6 @@
 package com.akbarlee.SpringServer.Auth;
 
 import com.akbarlee.SpringServer.Configuration.JWTService;
-import com.akbarlee.SpringServer.Customer.Role;
 import com.akbarlee.SpringServer.Customer.UserRepository;
 import com.akbarlee.SpringServer.Customer.User;
 import lombok.AllArgsConstructor;
@@ -36,10 +35,9 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
                 .build();
                 repository.save(user);
-
+                logger.warning("Pass test " + user);
 
 
 
