@@ -52,9 +52,27 @@ public class AccountController {
             modelAndView.addObject("loginP", user);
             modelAndView.setViewName("loginP");
 
+ 
             return modelAndView;
         }
 
+
+    Logger logger =  LoggerFactory.getLogger(getClass());
+
+
+
+
+    @GetMapping(value="/loginP")
+    public ModelAndView displayLogin(ModelAndView modelAndView, User user)
+    {
+
+        modelAndView.addObject("loginP", user);
+        modelAndView.setViewName("loginP");
+
+        return modelAndView;
+    }
+
+ 
     @PostMapping(value = ("/loginP"))
     public ModelAndView loginUser(ModelAndView modelAndView,
                                   @RequestParam String email,
@@ -89,8 +107,15 @@ public class AccountController {
 
 
 
+ 
         @RequestMapping(value = "/register", method = RequestMethod.GET)
         public ModelAndView displayRegistration(ModelAndView modelAndView, User user) {
+ 
+
+    @RequestMapping(value="/register", method = RequestMethod.GET)
+    public ModelAndView displayRegistration(ModelAndView modelAndView, User user)
+    {
+ 
 
             logger.info("Trying to GET request register user  {}", user);
 
