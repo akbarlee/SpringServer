@@ -1,6 +1,8 @@
 package com.akbarlee.SpringServer.CarouselCards;
 
 
+import com.akbarlee.SpringServer.ProductCards.ProductCard;
+import com.akbarlee.SpringServer.ProductCards.ProductDAO;
 import jakarta.servlet.ServletException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,12 +36,15 @@ public class CarouselController {
     @Autowired
     CarouselDAO carouselDAO;
 
+    @Autowired
+    ProductDAO productDAO;
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
 
     @PostMapping("/saveImageDetails")
-    public @ResponseBody ResponseEntity<?> createProduct(@RequestParam("carousel_title") String title,
+    public @ResponseBody ResponseEntity<?> createCarousel(@RequestParam("carousel_title") String title,
                                                          @RequestParam("description") String description, Model model, HttpServletRequest request
             , final @RequestParam("image") MultipartFile file) {
         try {
@@ -121,6 +126,7 @@ public class CarouselController {
     String show(Model map) {
         List<CarouselCard> images = carouselDAO.getAllActiveImages();
         map.addAttribute("images", images);
+
         log.info("List table items "+images);
         return "dashboardComponents/itemEditor";
     }
@@ -130,6 +136,9 @@ public class CarouselController {
     String showCarousel(Model carouselModel) {
         List<CarouselCard> carousel = carouselDAO.getAllActiveImages();
         carouselModel.addAttribute("carousel", carousel);
+        List<ProductCard> product = productDAO.getAllProductImages();
+        carouselModel.addAttribute("product", product);
+        log.info("List product items "+product);
         log.info("List carousel items "+carousel);
         return "index";
     }

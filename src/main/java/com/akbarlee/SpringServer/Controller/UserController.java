@@ -35,12 +35,12 @@ public class UserController {
         CTRL_LOGGER.info("List employees "+users);
         // Add the list of employees to the model
         model.addAttribute("employees", users);
-          return "dashboard.html";
+          return "dashboardComponents/dashboard.html";
               }
 
 
 
-    @GetMapping("/newCustomer")
+    @GetMapping()
         public String newCustomer(Model model) {
         User customer = new User();
         model.addAttribute("customer",customer);
@@ -53,11 +53,7 @@ public class UserController {
         return "redirect:/";
     }
 
-  @GetMapping("/get-all")
-    public List<User> getAllCustomer() {
 
-      return userDao.getAllEmployees();
-    }
     @GetMapping("/deleteCustomer/{id}")
   public String deleteEmployee(@PathVariable (value = "id") int id ) {
       userDao.deleteById(id);

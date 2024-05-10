@@ -7,10 +7,9 @@ body {
   min-height: 100vh;
   background: #fff;
   padding: 20px 0;
-  font: 700 16px/1 'Lato', sans-serif;
   text-transform: uppercase;
   text-align: center;
-  color:#fff;
+  color: #0e0d0d;
 }
 
 

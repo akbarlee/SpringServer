@@ -1,9 +1,12 @@
 package com.akbarlee.SpringServer.CarouselCards;
 
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface CarouselRepositoryJDBC {
 
     public CarouselCard create(CarouselCard image);

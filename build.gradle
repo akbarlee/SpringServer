@@ -14,6 +14,8 @@ configurations {
 	}
 }
 
+
+
 repositories {
 	mavenCentral()
 }
@@ -21,14 +23,16 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity6'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.0.2'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '3.0.2'
 	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '6.0.1'
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.31'
-
+	implementation group: 'org.webjars.npm', name: 'bootstrap', version: '5.0.2'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    implementation 'junit:junit:4.13.1'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.jetbrains:annotations:20.1.0'

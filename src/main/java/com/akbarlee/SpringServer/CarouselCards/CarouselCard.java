@@ -1,9 +1,5 @@
 package com.akbarlee.SpringServer.CarouselCards;
-
-
 import jakarta.persistence.*;
-
-import java.sql.Blob;
 import java.util.Date;
 
 @Entity

@@ -33,36 +33,27 @@ import java.util.Optional;
 @Controller
 public class AccountController {
     @Autowired
+        PasswordEncoder passwordEncoder;
 
+        @Autowired
+        private UserRepositoryJDBC userRepositoryJDBC;
 
-@Controller
-public class AccountController {
+        @Autowired
+        private VerificationTokenRepository verificationTokenRepository;
 
-    PasswordEncoder passwordEncoder;
+        @Autowired
+        private EmailSenderService emailSenderService;
 
- @Autowired
- private UserRepositoryJDBC userRepositoryJDBC;
+        Logger logger = LoggerFactory.getLogger(getClass());
 
- @Autowired
- private VerificationTokenRepository verificationTokenRepository;
+        @GetMapping(value = "/loginP")
+        public ModelAndView displayLogin(ModelAndView modelAndView, User user) {
 
- @Autowired
- private EmailSenderService emailSenderService;
+            modelAndView.addObject("loginP", user);
+            modelAndView.setViewName("loginP");
 
-    Logger logger =  LoggerFactory.getLogger(getClass());
-
-
-
-
-    @GetMapping(value="/loginP")
-    public ModelAndView displayLogin(ModelAndView modelAndView, User user)
-    {
-
-        modelAndView.addObject("loginP", user);
-        modelAndView.setViewName("loginP");
-
-        return modelAndView;
-    }
+            return modelAndView;
+        }
 
     @PostMapping(value = ("/loginP"))
     public ModelAndView loginUser(ModelAndView modelAndView,
@@ -98,80 +89,79 @@ public class AccountController {
 
 
 
+        @RequestMapping(value = "/register", method = RequestMethod.GET)
+        public ModelAndView displayRegistration(ModelAndView modelAndView, User user) {
 
-    @RequestMapping(value="/register", method = RequestMethod.GET)
-    public ModelAndView displayRegistration(ModelAndView modelAndView, User user)
-    {
+            logger.info("Trying to GET request register user  {}", user);
 
-        logger.info("Trying to GET request register user  {}", user);
-
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("register");
-        return modelAndView;
-    }
-
-    @RequestMapping(value="/register", method = RequestMethod.POST)
- public ModelAndView registerUser(ModelAndView modelAndView, User user) {
-
-
-       User existingUser = userRepositoryJDBC.findByEmail(user.getEmail());
-        logger.info("Trying to POST request register user  {}", existingUser);
-
-       User existingUser = userRepositoryJDBC.findByEmail(user.getEmail());
-
- if (existingUser != null) {
-            modelAndView.addObject("message", "This email already exists!");
-            modelAndView.setViewName("error");
- } else {
-
-      modelAndView.addObject("user", user);
-
-     user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-     //   user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-            // use a password encoder service
-            userRepositoryJDBC.save(user);
-            VerificationToken confirmationToken = new VerificationToken(user);
-            verificationTokenRepository.save(confirmationToken);
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setTo(user.getEmail());
-            mailMessage.setSubject("Complete Registration!");
-            mailMessage.setFrom("sabuhiakbarli@gmail.com");
-            mailMessage.setText("To confirm your account, please click here : "
-         + "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
-            emailSenderService.sendEmail(mailMessage); // use an async method
-            modelAndView.addObject("getEmail", user.getEmail());
-
-
-            modelAndView.setViewName("successfulRegisteration.html");
-
-            modelAndView.setViewName("successfulRegisteration");
-
-        }
- return modelAndView;
-    }
-
- @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
- public ModelAndView confirmUserAccount(ModelAndView modelAndView,
-                                        @RequestParam("token") String confirmationToken) {
-        VerificationToken token = verificationTokenRepository.findByVerificationToken(confirmationToken);
-
- if (token != null) {
-            User user = userRepositoryJDBC.findByEmail(token.getUser().getEmail());
-            user.setEnabled(true);
-            userRepositoryJDBC.save(user);
-            modelAndView.setViewName("accountVerified");
- } else {
-            modelAndView.addObject("message", "The link is invalid or broken!");
-            modelAndView.setViewName("error");
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("register");
+            return modelAndView;
         }
 
- return modelAndView;
+        @RequestMapping(value = "/register", method = RequestMethod.POST)
+        public ModelAndView registerUser(ModelAndView modelAndView, User user) {
+            logger.info("Your Pass", user.getPassword());
+
+
+            User existingUser = userRepositoryJDBC.findByEmail(user.getEmail());
+            logger.info("Trying to POST request register user  {}", existingUser);
+
+
+
+            if (existingUser != null) {
+                modelAndView.addObject("message", "This email already exists!");
+                modelAndView.setViewName("error");
+            } else {
+
+                modelAndView.addObject("user", user);
+
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+
+                // use a password encoder service
+                userRepositoryJDBC.save(user);
+                VerificationToken confirmationToken = new VerificationToken(user);
+                verificationTokenRepository.save(confirmationToken);
+                SimpleMailMessage mailMessage = new SimpleMailMessage();
+                mailMessage.setTo(user.getEmail());
+                mailMessage.setSubject("Complete Registration!");
+                mailMessage.setFrom("sabuhiakbarli@gmail.com");
+                mailMessage.setText("To confirm your account, please click here : "
+                        + "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
+                emailSenderService.sendEmail(mailMessage); // use an async method
+                modelAndView.addObject("getEmail", user.getEmail());
+
+
+                modelAndView.setViewName("successfulRegisteration.html");
+
+                modelAndView.setViewName("successfulRegisteration");
+
+            }
+            return modelAndView;
+        }
+
+        @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
+        public ModelAndView confirmUserAccount(ModelAndView modelAndView,
+                                               @RequestParam("token") String confirmationToken) {
+            VerificationToken token = verificationTokenRepository.findByVerificationToken(confirmationToken);
+
+            if (token != null) {
+                User user = userRepositoryJDBC.findByEmail(token.getUser().getEmail());
+                user.setEnabled(true);
+                userRepositoryJDBC.save(user);
+                modelAndView.setViewName("accountVerified");
+            } else {
+                modelAndView.addObject("message", "The link is invalid or broken!");
+                modelAndView.setViewName("error");
+            }
+
+            return modelAndView;
+        }
+
+        @Bean
+        public PasswordEncoder passEncoder() {
+            return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y);
+        }
     }
 
-    @Bean
-    public PasswordEncoder passEncoder() {
-        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y);
-    }
-}

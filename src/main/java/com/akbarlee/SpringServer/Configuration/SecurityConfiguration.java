@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,14 +27,14 @@ import javax.sql.DataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 
-public class SecurityConfiguration  {
+public class SecurityConfiguration {
 
     @Autowired
     private DataSource dataSource;
@@ -54,19 +55,17 @@ public class SecurityConfiguration  {
 
         httpSecurity
 
-                .csrf()
-                .disable()
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
                 .requestMatchers("/**").permitAll()
-
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-
                 .formLogin()
                 .loginPage("/loginP")
                 .usernameParameter("email")
@@ -74,15 +73,6 @@ public class SecurityConfiguration  {
                 .defaultSuccessUrl("/",true)
                 .failureUrl("/login.html?error=true")
                 .permitAll();
-
-
-                .httpBasic();
-              //  .and().httpBasic();
-
-
-              //  .loginPage("/login");
-
-
               return httpSecurity.build();
 
     }

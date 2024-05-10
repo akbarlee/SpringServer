@@ -37,13 +37,13 @@
                 <li class="nav-list-item active">
                     <a class="nav-list-link" href="itemEditor">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                        İtem Editor
+                        Carousel Editor
                     </a>
                 </li>
                 <li class="nav-list-item">
-                    <a class="nav-list-link" href="#">
+                    <a class="nav-list-link" href="productEditor">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
-                        Applications
+                        Product Editor
                     </a>
                 </li>
                 <li class="nav-list-item">
@@ -89,100 +89,57 @@
                 <!--====================  Carousel table data bitir  ====================-->
             </table>
 
-            <div class="faq-wrapper" id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                               Carousel editor MVC <span> <i class="fa fa-chevron-down"></i>
-                                    <i class="fa fa-chevron-up"></i> </span>
-                            </button>
-                        </h5>
+            <div id="container">
+                <h1>&bull; Carousel Editor &bull;</h1>
+
+                <div class="icon_wrapper">
+
+                </div>
+                <form th:action="@{/saveImageDetails}" method="post" enctype="multipart/form-data">
+                    <div class="name">
+                        <label for="name"></label>
+                        <input type="text" placeholder="Title"id="carousel_title" name="carousel_title" th:value="${title}" required>
                     </div>
+                    <div class="description">
+                        <label for="description"></label>
+                        <input type="text" placeholder="Description"  id="description" name="description" th:text="${description}" required>
+                    </div>
+                    <div class="subject">
+                        <label for="subject"></label>
+                        <select placeholder="Subject line" name="subject" id="subject_input" required>
+                            <option disabled hidden selected>Subject line</option>
+                            <option>Hələ ki</option>
+                            <option>istifadə</option>
+                            <option>edilmir</option>
+                        </select>
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Submit" id="form_button" />
+                    </div>
+                    <section class="hero is-light">
+                        <div class="hero-body">
+                            <div class="container has-text-centered">
 
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
-                        <div class="card-body">
-                            <div class="container py-xl-4 py-lg-2">
-                                <!--====================  Submit form  ====================-->
-                                <form th:action="@{/saveImageDetails}" method="post" enctype="multipart/form-data">
-                                    <div class="contact-grids1 w3agile-6">
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
-                                                <label class="col-form-label">Name</label>
-                                                <input type="text" id="carousel_title" name="carousel_title" th:value="${title}" required/> <p id="error_name"></p>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
-                                                <label class="col-form-label">Description</label>
-                                                <textarea id="description" name="description" th:text="${description}" required></textarea>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 contact-form1 form-group">
-                                                <label class="col-form-label">Image</label>
-                                                <input type="file" id="image" name="image" accept="image/*" required/>
-                                            </div>
-                                        </div>
-                                        <div class="right-w3l col-md-6">
-                                            <input type="submit" value="Save"/>
-                                            <br><br>
-                                        </div>
-                                        <a href="/image/show" style="float:left;" class="btn btn-success text-right">Show All</a>
-                                    </div>
-                                    <br>
-                                    <div id="success" class="text-center" style="color:green;"></div>
-                                    <div id="error" class="text-center" style="color:red;"></div>
-
-                                </form>
-                                <script src="js/dashboardControl.js"></script>
-
+                                <p class="control uploader">
+                                    <a class="button button is-dark is-fullwidth is-medium">
+                                <span class="icon is-small">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                        <span>Upload image</span>
+                                        <input type="file" id = "image" name="image" accept="image/*" onchange="showMyImage(this)" value=""
+                                               class="button button is-dark chooseFile" />
+                                    </a>
+                                </p>
                             </div>
+                            <!-- Image preview -->
+                            <div class="field">
+                                <img id="thumbnail" src="" alt="image-preview-here" />
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                What are the advantages of Helendo?<span> <i class="fa fa-chevron-down"></i>
-                                    <i class="fa fa-chevron-up"></i> </span>
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-                        <div class="card-body">
-                            <p>Helendo takes into consideration every little detail to make sure the system run smoothly and responsively. Helendo employs a new technique called Minified Technology for securing customers' database &amp; building up highly confidential firewalls. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                How working process is simplified? <span> <i class="fa fa-chevron-down"></i>
-                                    <i class="fa fa-chevron-up"></i> </span>
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
-                        <div class="card-body">
-                            <p>We reduce redundant complex calculations and lengthy erroneous code texts with simpler ones to ensure Helendo would run seamlessly and the design is reserved in its best form when viewed from a wide range of mobile devices &amp; browsers. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingFour">
-                        <h5 class="mb-0">
-                            <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Product Engineering &amp; Services<span> <i class="fa fa-chevron-down"></i>
-                                    <i class="fa fa-chevron-up"></i> </span>
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordion">
-                        <div class="card-body">
-                            <p>Our service offerings to enhance customer experience throughout the product lifecycle includes – test and repair, service management, and end-to-end warranty management. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </section>
+                </form><!-- // End form -->
+            </div><!-- // End #container -->
         </div>
 
 
@@ -198,6 +155,30 @@
             $('#carousel-info').DataTable();
         } );
     </script>
+  <script type="text/javascript">
+      //function for displaying the image upload preview
+
+      function showMyImage(fileInput) {
+          var files = fileInput.files;
+          for (var i = 0; i < files.length; i++) {
+              var file = files[i];
+              var imageType = /image.*/;
+              if (!file.type.match(imageType)) {
+                  continue;
+              }
+              var img = document.getElementById("thumbnail");
+              img.file = file;
+              var reader = new FileReader();
+              reader.onload = (function(aImg) {
+                  return function(e) {
+                      aImg.src = e.target.result;
+                  };
+              })(img);
+              reader.readAsDataURL(file);
+          }
+      }
+
+  </script>
 </body>
 
 </html>
