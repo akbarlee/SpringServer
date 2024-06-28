@@ -35,7 +35,11 @@ public class UserController {
         CTRL_LOGGER.info("List employees "+users);
         // Add the list of employees to the model
         model.addAttribute("employees", users);
+
           return "dashboardComponents/dashboard.html";
+
+          return "dashboard.html";
+ 
               }
 
 
